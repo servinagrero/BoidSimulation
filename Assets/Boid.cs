@@ -61,16 +61,16 @@ public class Boid : MonoBehaviour
 
             // In order to check this functionality, we can change the color of the boid depending on the number of neighbors
             // This is really slow and should only be used for debugging purposes
-            const float numNeighbors = 6f;
-            agent.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, context.Count / numNeighbors);
+            // const float numNeighbors = 6f;
+            // agent.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, context.Count / numNeighbors);
 
-            // Vector2 move = behaviour.CalculateMove(agent, context, this);
-            // move *= driveFactor;
+            Vector2 move = behaviour.CalculateMove(agent, context, this);
+            move *= driveFactor;
 
-            // if (move.sqrMagnitude > sqrMaxSpeed)
-            //     move = move.normalized * maxSpeed;
+            if (move.sqrMagnitude > sqrMaxSpeed)
+                move = move.normalized * maxSpeed;
 
-            // agent.Move(move);
+            agent.Move(move);
         }
     }
 
